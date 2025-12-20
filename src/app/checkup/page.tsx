@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,10 +30,10 @@ import { toast } from "sonner";
 
 const formSchema = z.object({
   full_name: z.string().min(2, "Name must be at least 2 characters"),
-  age: z.string().transform(Number).pipe(z.number().min(1).max(120)),
+  age: z.string().min(1, "Age is required"),
   gender: z.string().min(1, "Please select gender"),
-  height: z.string().transform(Number).pipe(z.number().positive()),
-  weight: z.string().transform(Number).pipe(z.number().positive()),
+  height: z.string().min(1, "Height is required"),
+  weight: z.string().min(1, "Weight is required"),
   contact_number: z.string().min(10, "Valid contact number required"),
   email: z.string().email("Invalid email address"),
   existing_disease: z.string().optional(),
@@ -41,7 +41,7 @@ const formSchema = z.object({
   lifestyle: z.string().min(1, "Please select lifestyle"),
 });
 
-type FormData = z.infer<typeof formSchema>;
+type FormInput = z.infer<typeof formSchema>;
 
 export default function CheckupPage() {
   const { language, t } = useI18n();
@@ -54,7 +54,7 @@ export default function CheckupPage() {
     setValue,
     watch,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<FormInput>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       gender: "",
@@ -63,17 +63,21 @@ export default function CheckupPage() {
     },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
     setIsSubmitting(true);
     try {
+      const numAge = Number(data.age);
+      const numHeight = Number(data.height);
+      const numWeight = Number(data.weight);
+
       // Save to Supabase (if keys are set, otherwise skip)
       if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
         const { error } = await supabase.from("submissions").insert([
           {
             ...data,
-            age: Number(data.age),
-            height: Number(data.height),
-            weight: Number(data.weight),
+            age: numAge,
+            height: numHeight,
+            weight: numWeight,
           },
         ]);
         if (error) console.error("Supabase error:", error);
@@ -85,8 +89,8 @@ export default function CheckupPage() {
       const dietInfo = dietData.disease_diet.find(d => d.disease_id === diseaseId);
 
       // BMI calculation
-      const heightInMeters = Number(data.height) / 100;
-      const bmi = Number(data.weight) / (heightInMeters * heightInMeters);
+      const heightInMeters = numHeight / 100;
+      const bmi = numWeight / (heightInMeters * heightInMeters);
       
       let bmiStatus = "Healthy";
       if (bmi < 18.5) bmiStatus = "Underweight";
