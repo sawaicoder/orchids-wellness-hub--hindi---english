@@ -1,65 +1,156 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useI18n } from "@/lib/i18n-context";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Activity, Apple, Heart, Search, ClipboardCheck } from "lucide-react";
+
+export default function HomePage() {
+  const { t } = useI18n();
+
+  const features = [
+    {
+      title: t("yoga"),
+      desc: t("benefits_yoga_desc"),
+      icon: <Activity className="h-8 w-8 text-emerald-600" />,
+      href: "/yoga",
+    },
+    {
+      title: t("diseases"),
+      desc: t("disease_info"),
+      icon: <Heart className="h-8 w-8 text-red-600" />,
+      href: "/diseases",
+    },
+    {
+      title: t("diet"),
+      desc: t("diet_guide"),
+      icon: <Apple className="h-8 w-8 text-orange-600" />,
+      href: "/diet",
+    },
+    {
+      title: t("checkup"),
+      desc: t("health_checkup"),
+      icon: <ClipboardCheck className="h-8 w-8 text-blue-600" />,
+      href: "/checkup",
+    },
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="flex flex-col gap-16 py-10">
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl font-extrabold tracking-tight sm:text-6xl text-zinc-900 dark:text-white"
+        >
+          {t("welcome")}
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mx-auto mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400"
+        >
+          {t("intro")}
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-10 flex flex-wrap justify-center gap-4"
+        >
+          <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+            <Link href="/checkup">{t("checkup")}</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link href="/yoga">{t("yoga")}</Link>
+          </Button>
+        </motion.div>
+      </section>
+
+      {/* Navigation Cards */}
+      <section className="bg-zinc-50 py-16 dark:bg-zinc-900">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, idx) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full border-none shadow-md transition-all hover:shadow-xl dark:bg-zinc-800">
+                  <CardHeader>
+                    <div className="mb-2">{feature.icon}</div>
+                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                      {feature.desc}
+                    </p>
+                    <Button asChild variant="link" className="mt-4 p-0 text-emerald-600">
+                      <Link href={feature.href}>{t("home")} →</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Daily Tips */}
+      <section className="container mx-auto px-4">
+        <h2 className="mb-8 text-center text-3xl font-bold">{t("daily_tips")}</h2>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {[1, 2, 3].map((i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -5 }}
+              className="rounded-2xl bg-white p-6 shadow-sm border dark:bg-zinc-800"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mb-4">
+                <span className="text-xl font-bold">{i}</span>
+              </div>
+              <p className="text-zinc-700 dark:text-zinc-300">
+                {t(`tip${i}`)}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Benefits of Yoga */}
+      <section className="bg-emerald-600 py-16 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold">{t("benefits_yoga_title")}</h2>
+          <p className="mx-auto mt-6 max-w-3xl text-emerald-50 text-lg">
+            {t("benefits_yoga_desc")}
           </p>
+          <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div>
+              <div className="text-4xl font-bold">15+</div>
+              <div className="text-emerald-100">Yoga Poses</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold">10+</div>
+              <div className="text-emerald-100">Disease Guides</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold">24/7</div>
+              <div className="text-emerald-100">Health Awareness</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold">100%</div>
+              <div className="text-emerald-100">Free Support</div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }
