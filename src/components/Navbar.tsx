@@ -5,22 +5,18 @@ import { useI18n } from "@/lib/i18n-context";
 import { Button } from "@/components/ui/button";
 import { Languages, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const { language, setLanguage, t } = useI18n();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleLanguage = () => {
-    setLanguage(language === "en" ? "hi" : "en");
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { href: "/", label: t("home") },
-    { href: "/yoga", label: t("yoga") },
-    { href: "/diseases", label: t("diseases") },
-    { href: "/diet", label: t("diet") },
-    { href: "/checkup", label: t("checkup") },
+    { name: t("home"), href: "/" },
+    { name: t("yoga"), href: "/yoga" },
+    { name: t("diseases"), href: "/diseases" },
+    { name: t("diet"), href: "/diet" },
+    { name: t("checkup"), href: "/checkup" },
   ];
 
   return (
@@ -28,32 +24,29 @@ export function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold text-emerald-600">
           <span className="text-2xl">🌿</span>
-          <span className="hidden sm:inline">HealthWise</span>
+          <span>HealthWealth</span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className="text-sm font-medium transition-colors hover:text-emerald-600"
             >
-              {link.label}
+              {link.name}
             </Link>
           ))}
           <Button
             variant="ghost"
             size="sm"
-            onClick={toggleLanguage}
-            className="flex items-center gap-2 border border-emerald-100 bg-emerald-50 hover:bg-emerald-100 text-emerald-700"
+            onClick={() => setLanguage(language === "en" ? "hi" : "en")}
+            className="flex items-center gap-2"
           >
             <Languages className="h-4 w-4" />
             {language === "en" ? "Hindi" : "English"}
           </Button>
-          <Link href="/admin">
-            <Button variant="outline" size="sm">{t("admin")}</Button>
-          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -61,38 +54,40 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={toggleLanguage}
-            className="flex items-center gap-2"
+            onClick={() => setLanguage(language === "en" ? "hi" : "en")}
           >
             <Languages className="h-4 w-4" />
-            {language === "en" ? "HI" : "EN"}
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X /> : <Menu />}
           </Button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden border-t bg-white p-4 dark:bg-zinc-950">
-          <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-lg font-medium"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium">
-              {t("admin")}
-            </Link>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-16 left-0 w-full bg-white p-4 shadow-lg dark:bg-zinc-950 md:hidden"
+          >
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-medium"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
