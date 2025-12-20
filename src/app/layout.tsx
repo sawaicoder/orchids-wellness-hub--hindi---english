@@ -3,11 +3,13 @@ import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
-import { I18nProvider } from "@/lib/i18n-context";
+import { LanguageProvider } from "@/components/LanguageContext";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Health & Wellness - Your Journey to Holistic Health",
-  description: "Empowering you to live a healthier, balanced life through Yoga, Nutrition, and Awareness.",
+  title: "HealthWealth - Your Health & Wellness Partner",
+  description: "Explore yoga, diet guides, and personalized health suggestions.",
 };
 
 export default function RootLayout({
@@ -17,29 +19,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <Script
-          id="orchids-browser-logs"
-          src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts/orchids-browser-logs.js"
-          strategy="afterInteractive"
-          data-orchids-project-id="420dd7b1-9e68-4e0e-852a-d70576ae6fd0"
-        />
-        <ErrorReporter />
-        <Script
-          src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
-          strategy="afterInteractive"
-          data-target-origin="*"
-          data-message-type="ROUTE_CHANGE"
-          data-include-search-params="true"
-          data-only-in-iframe="true"
-          data-debug="true"
-          data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
-        />
-        <I18nProvider>
-          {children}
-        </I18nProvider>
-        <VisualEditsMessenger />
+      <body className="antialiased min-h-screen flex flex-col">
+        <LanguageProvider>
+          <Script
+            id="orchids-browser-logs"
+            src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts/orchids-browser-logs.js"
+            strategy="afterInteractive"
+            data-orchids-project-id="420dd7b1-9e68-4e0e-852a-d70576ae6fd0"
+          />
+          <ErrorReporter />
+          <Script
+            src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
+            strategy="afterInteractive"
+            data-target-origin="*"
+            data-message-type="ROUTE_CHANGE"
+            data-include-search-params="true"
+            data-only-in-iframe="true"
+            data-debug="true"
+            data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
+          />
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <VisualEditsMessenger />
+        </LanguageProvider>
       </body>
     </html>
   );
 }
+
