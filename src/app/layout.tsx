@@ -3,9 +3,7 @@ import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
-import { I18nProvider } from "@/lib/i18n-context";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { ClientLayout } from "@/components/ClientLayout";
 
 export const metadata: Metadata = {
   title: "Health & Wellness - Your Journey to Holistic Health",
@@ -37,19 +35,11 @@ export default function RootLayout({
           data-debug="true"
           data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
         />
-        <I18nProvider>
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </I18nProvider>
+        <ClientLayout>
+          {children}
+        </ClientLayout>
         <VisualEditsMessenger />
       </body>
     </html>
   );
 }
-
-
