@@ -31,13 +31,14 @@ export default function AdminPage() {
     }
   };
 
-  const fetchSubmissions = async () => {
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("submissions")
-        .select("*")
-        .order("created_at", { ascending: false });
+    const fetchSubmissions = async () => {
+      setLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from("health_submissions")
+          .select("*")
+          .order("created_at", { ascending: false });
+
 
       if (error) throw error;
       setSubmissions(data || []);
