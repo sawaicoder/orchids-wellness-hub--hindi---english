@@ -11,13 +11,14 @@ export function Navbar() {
   const { language, setLanguage, t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = [
-    { name: t("home"), href: "/" },
-    { name: t("yoga"), href: "/yoga" },
-    { name: t("diseases"), href: "/diseases" },
-    { name: t("diet"), href: "/diet" },
-    { name: t("checkup"), href: "/checkup" },
-  ];
+    const navLinks = [
+      { name: t("home"), href: "/" },
+      { name: t("yoga"), href: "/yoga" },
+      { name: t("diseases"), href: "/diseases" },
+      { name: t("diet"), href: "/diet" },
+      { name: t("calculators"), href: "/calculators" },
+      { name: t("checkup"), href: "/checkup" },
+    ];
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md dark:bg-zinc-950/80">
