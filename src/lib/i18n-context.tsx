@@ -18,9 +18,10 @@ const translations = {
       diseases: "Diseases",
       diet: "Diet",
       checkup: "Health Checkup",
-      calculators: "Health Tools",
+        calculators: "Health Tools",
         admin: "Admin",
         meditation: "Meditation",
+        ayurveda: "Ayurvedic Remedies",
         // Home
       welcome: "Your Journey to Holistic Wellness",
       intro: "Empowering you to live a healthier, balanced life through Yoga, Nutrition, and Awareness.",
