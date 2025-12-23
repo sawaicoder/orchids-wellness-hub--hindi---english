@@ -70,19 +70,6 @@ export default function CheckupPage() {
       const numHeight = Number(data.height);
       const numWeight = Number(data.weight);
 
-      // Save to Supabase (if keys are set, otherwise skip)
-      if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
-        const { error } = await supabase.from("submissions").insert([
-          {
-            ...data,
-            age: numAge,
-            height: numHeight,
-            weight: numWeight,
-          },
-        ]);
-        if (error) console.error("Supabase error:", error);
-      }
-
       // Generate Smart Suggestions
       const diseaseId = data.existing_disease;
       const diseaseInfo = diseasesData.find(d => d.id === diseaseId);
@@ -108,6 +95,20 @@ export default function CheckupPage() {
           data.lifestyle === "Sedentary" ? "Activity: Start with 20 mins of daily walking." : "Activity: Maintain your active lifestyle with strength training.",
         ],
       };
+
+      // Save to Supabase (if keys are set, otherwise skip)
+      if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
+        const { error } = await supabase.from("health_submissions").insert([
+          {
+            ...data,
+            age: numAge,
+            height: data.height,
+            weight: data.weight,
+            suggestions: results
+          },
+        ]);
+        if (error) console.error("Supabase error:", error);
+      }
 
       setSuggestions(results);
       toast.success("Assessment complete!");
