@@ -15,8 +15,9 @@ export function Navbar() {
       { name: t("home"), href: "/" },
       { name: t("yoga"), href: "/yoga" },
       { name: t("diseases"), href: "/diseases" },
-      { name: t("diet"), href: "/diet" },
-      { name: t("calculators"), href: "/calculators" },
+        { name: t("diet"), href: "/diet" },
+        { name: t("meditation"), href: "/meditation" },
+        { name: t("calculators"), href: "/calculators" },
       { name: t("checkup"), href: "/checkup" },
     ];
 

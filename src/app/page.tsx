@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Activity, Apple, Heart, Search, ClipboardCheck } from "lucide-react";
+import { Activity, Apple, Heart, Search, ClipboardCheck, Calculator } from "lucide-react";
 
 export default function HomePage() {
   const { t } = useI18n();
@@ -28,6 +28,12 @@ export default function HomePage() {
       desc: t("diet_guide"),
       icon: <Apple className="h-8 w-8 text-orange-600" />,
       href: "/diet",
+    },
+    {
+      title: t("meditation"),
+      desc: t("tip2"),
+      icon: <Activity className="h-8 w-8 text-indigo-600" />,
+      href: "/meditation",
     },
     {
       title: t("calculators"),

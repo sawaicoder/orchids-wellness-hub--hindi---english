@@ -19,8 +19,9 @@ const translations = {
       diet: "Diet",
       checkup: "Health Checkup",
       calculators: "Health Tools",
-      admin: "Admin",
-      // Home
+        admin: "Admin",
+        meditation: "Meditation",
+        // Home
       welcome: "Your Journey to Holistic Wellness",
       intro: "Empowering you to live a healthier, balanced life through Yoga, Nutrition, and Awareness.",
       benefits_yoga_title: "Benefits of Yoga",
@@ -87,8 +88,9 @@ const translations = {
       diet: "आहार",
       checkup: "स्वास्थ्य जांच",
       calculators: "स्वास्थ्य उपकरण",
-      admin: "एडमिन",
-      // Home
+        admin: "एडमिन",
+        meditation: "ध्यान",
+        // Home
       welcome: "समग्र कल्याण के लिए आपकी यात्रा",
       intro: "योग, पोषण और जागरूकता के माध्यम से आपको एक स्वस्थ, संतुलित जीवन जीने के लिए सशक्त बनाना।",
       benefits_yoga_title: "योग के लाभ",
