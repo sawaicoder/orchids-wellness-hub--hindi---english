@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Activity, Apple, Heart, Search, ClipboardCheck, Calculator } from "lucide-react";
+import { Activity, Apple, Heart, Search, ClipboardCheck, Calculator, Leaf } from "lucide-react";
 
 export default function HomePage() {
-  const { t } = useI18n();
+  const { t, language } = useI18n();
 
   const features = [
     {
@@ -16,6 +16,12 @@ export default function HomePage() {
       desc: t("benefits_yoga_desc"),
       icon: <Activity className="h-8 w-8 text-emerald-600" />,
       href: "/yoga",
+    },
+    {
+      title: t("ayurveda"),
+      desc: language === "hi" ? "प्राकृतिक घरेलू उपचार" : "Natural home remedies",
+      icon: <Leaf className="h-8 w-8 text-emerald-600" />,
+      href: "/remedies",
     },
     {
       title: t("diseases"),
