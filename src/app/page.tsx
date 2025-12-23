@@ -30,76 +30,100 @@ export default function HomePage() {
       href: "/diet",
     },
     {
+      title: t("calculators"),
+      desc: t("bmi_desc"),
+      icon: <Calculator className="h-8 w-8 text-blue-600" />,
+      href: "/calculators",
+    },
+    {
       title: t("checkup"),
       desc: t("health_checkup"),
-      icon: <ClipboardCheck className="h-8 w-8 text-blue-600" />,
+      icon: <ClipboardCheck className="h-8 w-8 text-emerald-600" />,
       href: "/checkup",
     },
   ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
+  };
 
   return (
     <div className="flex flex-col gap-16 py-10">
       {/* Hero Section */}
       <section className="container mx-auto px-4 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-4xl font-extrabold tracking-tight sm:text-6xl text-zinc-900 dark:text-white"
-        >
-          {t("welcome")}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mx-auto mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400"
-        >
-          {t("intro")}
-        </motion.p>
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-10 flex flex-wrap justify-center gap-4"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
         >
-          <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-            <Link href="/checkup">{t("checkup")}</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/yoga">{t("yoga")}</Link>
-          </Button>
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl text-zinc-900 dark:text-white"
+          >
+            {t("welcome")}
+          </motion.h1>
+          <motion.p
+            variants={itemVariants}
+            className="mx-auto mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400"
+          >
+            {t("intro")}
+          </motion.p>
+          <motion.div
+            variants={itemVariants}
+            className="mt-10 flex flex-wrap justify-center gap-4"
+          >
+            <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700 h-12 px-8">
+              <Link href="/checkup">{t("checkup")}</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="h-12 px-8">
+              <Link href="/calculators">{t("calculators")}</Link>
+            </Button>
+          </motion.div>
         </motion.div>
       </section>
 
       {/* Navigation Cards */}
-      <section className="bg-zinc-50 py-16 dark:bg-zinc-900">
+      <section className="bg-zinc-50 py-20 dark:bg-zinc-900/50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, idx) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full border-none shadow-md transition-all hover:shadow-xl dark:bg-zinc-800">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+          >
+            {features.map((feature) => (
+              <motion.div key={feature.title} variants={itemVariants}>
+                <Card className="group h-full border-none shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 dark:bg-zinc-800">
                   <CardHeader>
-                    <div className="mb-2">{feature.icon}</div>
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm transition-colors group-hover:bg-emerald-50 dark:bg-zinc-700">
+                      {feature.icon}
+                    </div>
+                    <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                    <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
                       {feature.desc}
                     </p>
-                    <Button asChild variant="link" className="mt-4 p-0 text-emerald-600">
-                      <Link href={feature.href}>{t("home")} →</Link>
+                    <Button asChild variant="link" className="mt-6 p-0 text-emerald-600 font-semibold">
+                      <Link href={feature.href}>Explore More →</Link>
                     </Button>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
