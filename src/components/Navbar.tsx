@@ -14,6 +14,7 @@ export function Navbar() {
     const navLinks = [
       { name: t("home"), href: "/" },
       { name: t("yoga"), href: "/yoga" },
+      { name: t("ayurveda"), href: "/remedies" },
       { name: t("diseases"), href: "/diseases" },
         { name: t("diet"), href: "/diet" },
         { name: t("meditation"), href: "/meditation" },
