@@ -47,6 +47,15 @@ export default function CheckupPage() {
   const { language, t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [suggestions, setSuggestions] = useState<any>(null);
+  const [diseases, setDiseases] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchDiseases() {
+      const { data } = await supabase.from("diseases").select("id, name_en, name_hi");
+      if (data) setDiseases(data);
+    }
+    fetchDiseases();
+  }, []);
 
   const {
     register,
