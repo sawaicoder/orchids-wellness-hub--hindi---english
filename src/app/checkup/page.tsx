@@ -306,15 +306,15 @@ export default function CheckupPage() {
                 <SelectTrigger>
                   <SelectValue placeholder="Select disease" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">None</SelectItem>
-                  {diseasesData.map(d => (
-                    <SelectItem key={d.id} value={d.id}>
-                      {language === "en" ? d.name_en : d.name_hi}
-                    </SelectItem>
-                  ))}
-                  <SelectItem value="other">Other</SelectItem>
-                </SelectContent>
+                  <SelectContent>
+                    <SelectItem value="none">None</SelectItem>
+                    {diseases.map(d => (
+                      <SelectItem key={d.id} value={d.id}>
+                        {language === "en" ? d.name_en : d.name_hi}
+                      </SelectItem>
+                    ))}
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
               </Select>
             </div>
 
