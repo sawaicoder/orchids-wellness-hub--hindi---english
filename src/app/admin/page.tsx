@@ -16,6 +16,7 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [submissions, setSubmissions] = useState<any[]>([]);
+  const [diseases, setDiseases] = useState<any[]>([]);
   const [filteredSubmissions, setFilteredSubmissions] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [filterDisease, setFilterDisease] = useState("all");
@@ -23,15 +24,22 @@ export default function AdminPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "admin123") { // Simple hardcoded password for demo
+    if (password === "admin123") { 
       setIsAuthenticated(true);
       fetchSubmissions();
+      fetchDiseases();
     } else {
       toast.error("Invalid password");
     }
   };
 
-    const fetchSubmissions = async () => {
+  const fetchDiseases = async () => {
+    const { data } = await supabase.from("diseases").select("id, name_en, name_hi");
+    if (data) setDiseases(data);
+  };
+
+  const fetchSubmissions = async () => {
+
       setLoading(true);
       try {
         const { data, error } = await supabase
