@@ -18,7 +18,7 @@ const yogaData = [
     {
       id: "weight-loss",
       titleKey: "weight_loss",
-      videoId: "6hZ7YMB2D0U", // Yoga For Weight Loss - 20 min
+      videoId: "digpucxFbMo", // Yoga For Weight Loss - 20 min
       poses: [
         { nameEn: "Plank Pose", nameHi: "फलकासन", benefitEn: "Strengthens core", benefitHi: "कोर को मजबूत करता है" },
         { nameEn: "Warrior II", nameHi: "वीरभद्रासन II", benefitEn: "Tones legs and arms", benefitHi: "पैरों और हाथों को टोन करता है" },
