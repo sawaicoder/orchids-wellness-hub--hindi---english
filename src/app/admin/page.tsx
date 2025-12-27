@@ -76,13 +76,15 @@ export default function AdminPage() {
   const exportCSV = () => {
     if (filteredSubmissions.length === 0) return;
     
-    const headers = ["Date", "Name", "Age", "Gender", "Email", "Disease", "Symptoms", "Lifestyle"];
+    const headers = ["Date", "Name", "Age", "Gender", "Email", "Contact", "Mobile", "Disease", "Symptoms", "Lifestyle"];
     const rows = filteredSubmissions.map(s => [
       format(new Date(s.created_at), "yyyy-MM-dd"),
       s.full_name,
       s.age,
       s.gender,
       s.email,
+      s.contact_number,
+      s.mobile_number,
       s.existing_disease,
       s.symptoms.replace(/,/g, ";"),
       s.lifestyle
