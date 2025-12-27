@@ -281,11 +281,16 @@ export default function CheckupPage() {
                 </Select>
                 {errors.gender && <p className="text-xs text-red-500">{errors.gender.message}</p>}
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="contact_number">{t("contact")}</Label>
-                <Input id="contact_number" {...register("contact_number")} />
-                {errors.contact_number && <p className="text-xs text-red-500">{errors.contact_number.message}</p>}
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contact_number">{t("contact")}</Label>
+                  <Input id="contact_number" {...register("contact_number")} />
+                  {errors.contact_number && <p className="text-xs text-red-500">{errors.contact_number.message}</p>}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="mobile_number">{t("mobile_number")}</Label>
+                  <Input id="mobile_number" {...register("mobile_number")} />
+                  {errors.mobile_number && <p className="text-xs text-red-500">{errors.mobile_number.message}</p>}
+                </div>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
