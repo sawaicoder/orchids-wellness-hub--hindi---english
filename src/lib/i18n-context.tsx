@@ -151,10 +151,11 @@ const translations = {
       bmr_desc: "अपनी बेसल मेटाबोलिक दर (आराम करते समय जलाई गई कैलोरी) की गणना करें।",
       water_title: "पानी पीने का लक्ष्य",
       water_desc: "गणना करें कि आपको प्रतिदिन कितना पानी पीना चाहिए।",
-      calculate: "गणना करें",
-      result: "आपका परिणाम",
-    },
-};
+        calculate: "गणना करें",
+        result: "आपका परिणाम",
+        call_doctor: "डॉक्टर को कॉल करें",
+      },
+  };
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
