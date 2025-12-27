@@ -222,11 +222,11 @@ export default function AdminPage() {
                       <span className="text-xs text-zinc-400">{s.age}y, {s.gender}</span>
                     </div>
                   </TableCell>
-                  <TableCell>
-                    <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
-                      {diseasesData.find(d => d.id === s.existing_disease)?.name_en || s.existing_disease || "None"}
-                    </span>
-                  </TableCell>
+                    <TableCell>
+                      <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
+                        {diseases.find(d => d.id === s.existing_disease)?.name_en || s.existing_disease || "None"}
+                      </span>
+                    </TableCell>
                   <TableCell className="max-w-xs truncate text-zinc-600">
                     {s.symptoms}
                   </TableCell>
