@@ -1,24 +1,50 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n-context";
-import { diseasesData } from "@/lib/diseases-data";
+import { supabase } from "@/lib/supabase";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, CheckCircle2, AlertCircle, Info, Wind, HeartPulse } from "lucide-react";
+import { ArrowLeft, CheckCircle2, AlertCircle, Info, Wind, HeartPulse, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function DiseaseDetailPage() {
   const { language, t } = useI18n();
   const params = useParams();
   const router = useRouter();
-  const disease = diseasesData.find((d) => d.id === params.id);
+  const [disease, setDisease] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchDisease() {
+      const { data, error } = await supabase
+        .from("diseases")
+        .select("*")
+        .eq("id", params.id)
+        .single();
+      
+      if (!error && data) {
+        setDisease(data);
+      }
+      setLoading(false);
+    }
+    fetchDisease();
+  }, [params.id]);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <Loader2 className="h-10 w-10 animate-spin text-emerald-600" />
+      </div>
+    );
+  }
 
   if (!disease) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
-        <h1 className="text-2xl font-bold">Disease not found</h1>
-        <Button onClick={() => router.push("/diseases")} className="mt-4">
+        <h1 className="text-2xl font-bold text-zinc-900">Disease not found</h1>
+        <Button onClick={() => router.push("/diseases")} className="mt-4 bg-emerald-600 hover:bg-emerald-700">
           Go Back
         </Button>
       </div>
