@@ -101,6 +101,12 @@ export default function HomePage() {
             <Button asChild variant="outline" size="lg" className="h-12 px-8">
               <Link href="/calculators">{t("calculators")}</Link>
             </Button>
+            <Button asChild variant="secondary" size="lg" className="h-12 px-8 border-emerald-600 text-emerald-600 hover:bg-emerald-50">
+              <a href="tel:+911234567890">
+                <Phone className="mr-2 h-5 w-5" />
+                {t("call_doctor")}
+              </a>
+            </Button>
           </motion.div>
         </motion.div>
       </section>
