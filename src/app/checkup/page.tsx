@@ -79,10 +79,11 @@ export default function CheckupPage() {
       const numHeight = Number(data.height);
       const numWeight = Number(data.weight);
 
-      // Generate Smart Suggestions
-      const diseaseId = data.existing_disease;
-      const diseaseInfo = diseasesData.find(d => d.id === diseaseId);
-      const dietInfo = dietData.disease_diet.find(d => d.disease_id === diseaseId);
+        // Generate Smart Suggestions
+        const diseaseId = data.existing_disease;
+        const diseaseInfo = diseases.find(d => d.id === diseaseId);
+        const dietInfo = dietData.disease_diet.find(d => d.disease_id === diseaseId);
+
 
       // BMI calculation
       const heightInMeters = numHeight / 100;
