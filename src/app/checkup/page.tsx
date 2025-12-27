@@ -50,7 +50,7 @@ export default function CheckupPage() {
 
   useEffect(() => {
     async function fetchDiseases() {
-      const { data } = await supabase.from("diseases").select("id, name_en, name_hi");
+      const { data } = await supabase.from("diseases").select("*");
       if (data) setDiseases(data);
     }
     fetchDiseases();
