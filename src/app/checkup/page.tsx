@@ -1,7 +1,6 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n-context";
-import { diseasesData } from "@/lib/diseases-data";
 import { dietData } from "@/lib/diet-data";
 import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
