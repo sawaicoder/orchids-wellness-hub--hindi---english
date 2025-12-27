@@ -178,7 +178,7 @@ export default function AdminPage() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Diseases</SelectItem>
-              {diseasesData.map(d => (
+              {diseases.map(d => (
                 <SelectItem key={d.id} value={d.id}>{d.name_en}</SelectItem>
               ))}
               <SelectItem value="none">No Disease</SelectItem>
