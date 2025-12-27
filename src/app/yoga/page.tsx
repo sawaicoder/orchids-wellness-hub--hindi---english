@@ -6,51 +6,51 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 
 const yogaData = [
-  {
-    id: "morning",
-    titleKey: "morning_yoga",
-    videoId: "v7AYKMP6rOE", // Example Yoga with Adriene
-    poses: [
-      { nameEn: "Sun Salutation (Surya Namaskar)", nameHi: "सूर्य नमस्कार", benefitEn: "Energizes the body", benefitHi: "शरीर को ऊर्जावान बनाता है" },
-      { nameEn: "Child's Pose", nameHi: "बालासन", benefitEn: "Calms the mind", benefitHi: "मन को शांत करता है" },
-    ],
-  },
-  {
-    id: "weight-loss",
-    titleKey: "weight_loss",
-    videoId: "2vU0_7uP_G4",
-    poses: [
-      { nameEn: "Plank Pose", nameHi: "फलकासन", benefitEn: "Strengthens core", benefitHi: "कोर को मजबूत करता है" },
-      { nameEn: "Warrior II", nameHi: "वीरभद्रासन II", benefitEn: "Tones legs and arms", benefitHi: "पैरों और हाथों को टोन करता है" },
-    ],
-  },
-  {
-    id: "diabetes",
-    titleKey: "diabetes_yoga",
-    videoId: "jE-0jS9e3YI",
-    poses: [
-      { nameEn: "Seated Forward Bend", nameHi: "पश्चिमोत्तानासन", benefitEn: "Massages abdominal organs", benefitHi: "पेट के अंगों की मालिश करता है" },
-      { nameEn: "Spinal Twist", nameHi: "अर्ध मत्स्येंद्रासन", benefitEn: "Regulates insulin levels", benefitHi: "इंसुलिन स्तर को नियंत्रित करता है" },
-    ],
-  },
-  {
-    id: "back-pain",
-    titleKey: "back_pain_yoga",
-    videoId: "2eA2Koq6pTI",
-    poses: [
-      { nameEn: "Cat-Cow Pose", nameHi: "मार्जरीआसन", benefitEn: "Improves spinal flexibility", benefitHi: "रीढ़ की हड्डी के लचीलेपन में सुधार करता है" },
-      { nameEn: "Cobra Pose", nameHi: "भुजंगासन", benefitEn: "Relieves lower back stiffness", benefitHi: "पीठ के निचले हिस्से की जकड़न को दूर करता है" },
-    ],
-  },
-  {
-    id: "stress",
-    titleKey: "stress_yoga",
-    videoId: "hJbRPHZr_dU",
-    poses: [
-      { nameEn: "Legs Up the Wall", nameHi: "विपरीत करणी", benefitEn: "Reduces anxiety", benefitHi: "चिंता कम करता है" },
-      { nameEn: "Corpse Pose", nameHi: "शवासन", benefitEn: "Deep relaxation", benefitHi: "गहरी विश्राम" },
-    ],
-  },
+    {
+      id: "morning",
+      titleKey: "morning_yoga",
+      videoId: "OMu6OKF5Z1k", // Yoga Morning Fresh
+      poses: [
+        { nameEn: "Sun Salutation (Surya Namaskar)", nameHi: "सूर्य नमस्कार", benefitEn: "Energizes the body", benefitHi: "शरीर को ऊर्जावान बनाता है" },
+        { nameEn: "Child's Pose", nameHi: "बालासन", benefitEn: "Calms the mind", benefitHi: "मन को शांत करता है" },
+      ],
+    },
+    {
+      id: "weight-loss",
+      titleKey: "weight_loss",
+      videoId: "6hZ7YMB2D0U", // Yoga For Weight Loss - 20 min
+      poses: [
+        { nameEn: "Plank Pose", nameHi: "फलकासन", benefitEn: "Strengthens core", benefitHi: "कोर को मजबूत करता है" },
+        { nameEn: "Warrior II", nameHi: "वीरभद्रासन II", benefitEn: "Tones legs and arms", benefitHi: "पैरों और हाथों को टोन करता है" },
+      ],
+    },
+    {
+      id: "diabetes",
+      titleKey: "diabetes_yoga",
+      videoId: "fmh58tykgpo", // Yoga for Diabetes
+      poses: [
+        { nameEn: "Seated Forward Bend", nameHi: "पश्चिमोत्तानासन", benefitEn: "Massages abdominal organs", benefitHi: "पेट के अंगों की मालिश करता है" },
+        { nameEn: "Spinal Twist", nameHi: "अर्ध मत्स्येंद्रासन", benefitEn: "Regulates insulin levels", benefitHi: "इंसुलिन स्तर को नियंत्रित करता है" },
+      ],
+    },
+    {
+      id: "back-pain",
+      titleKey: "back_pain_yoga",
+      videoId: "X3-gKAn6154", // Yoga for Lower Back Pain
+      poses: [
+        { nameEn: "Cat-Cow Pose", nameHi: "मार्जरीआसन", benefitEn: "Improves spinal flexibility", benefitHi: "रीढ़ की हड्डी के लचीलेपन में सुधार करता है" },
+        { nameEn: "Cobra Pose", nameHi: "भुजंगासन", benefitEn: "Relieves lower back stiffness", benefitHi: "पीठ के निचले हिस्से की जकड़न को दूर करता है" },
+      ],
+    },
+    {
+      id: "stress",
+      titleKey: "stress_yoga",
+      videoId: "sTANio_2E0Q", // Yoga for Stress Relief
+      poses: [
+        { nameEn: "Legs Up the Wall", nameHi: "विपरीत करणी", benefitEn: "Reduces anxiety", benefitHi: "चिंता कम करता है" },
+        { nameEn: "Corpse Pose", nameHi: "शवासन", benefitEn: "Deep relaxation", benefitHi: "गहरी विश्राम" },
+      ],
+    },
 ];
 
 export default function YogaPage() {
