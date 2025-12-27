@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Activity, Apple, Heart, Search, ClipboardCheck, Calculator, Leaf } from "lucide-react";
+import { Activity, Apple, Heart, Search, ClipboardCheck, Calculator, Leaf, Phone } from "lucide-react";
 
 export default function HomePage() {
   const { t, language } = useI18n();
