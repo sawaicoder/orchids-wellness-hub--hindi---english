@@ -36,7 +36,7 @@ const yogaData = [
     {
       id: "back-pain",
       titleKey: "back_pain_yoga",
-      videoId: "X3-gKAn6154", // Yoga for Lower Back Pain
+      videoId: "2eA2Koq6pTI&t", // Yoga for Lower Back Pain
       poses: [
         { nameEn: "Cat-Cow Pose", nameHi: "मार्जरीआसन", benefitEn: "Improves spinal flexibility", benefitHi: "रीढ़ की हड्डी के लचीलेपन में सुधार करता है" },
         { nameEn: "Cobra Pose", nameHi: "भुजंगासन", benefitEn: "Relieves lower back stiffness", benefitHi: "पीठ के निचले हिस्से की जकड़न को दूर करता है" },
