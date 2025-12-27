@@ -78,12 +78,13 @@ const translations = {
       bmr_title: "BMR Calculator",
       bmr_desc: "Calculate your Basal Metabolic Rate (calories burned at rest).",
       water_title: "Water Intake Goal",
-      water_desc: "Calculate how much water you should drink daily.",
-      calculate: "Calculate",
-      result: "Your Result",
-    },
-    hi: {
-      // Nav
+        water_desc: "Calculate how much water you should drink daily.",
+        calculate: "Calculate",
+        result: "Your Result",
+        call_doctor: "Call Doctor",
+      },
+      hi: {
+        // Nav
       home: "होम",
       yoga: "योग",
       diseases: "बीमारियां",
