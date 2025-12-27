@@ -218,11 +218,12 @@ export default function AdminPage() {
                     {format(new Date(s.created_at), "MMM dd, yyyy")}
                   </TableCell>
                   <TableCell>
-                    <div className="flex flex-col">
-                      <span className="font-bold">{s.full_name}</span>
-                      <span className="text-xs text-zinc-500">{s.email}</span>
-                      <span className="text-xs text-zinc-400">{s.age}y, {s.gender}</span>
-                    </div>
+                      <div className="flex flex-col">
+                        <span className="font-bold">{s.full_name}</span>
+                        <span className="text-xs text-zinc-500">{s.email}</span>
+                        <span className="text-xs text-zinc-400">{s.age}y, {s.gender}</span>
+                        {s.mobile_number && <span className="text-xs text-emerald-600 font-medium">Mob: {s.mobile_number}</span>}
+                      </div>
                   </TableCell>
                     <TableCell>
                       <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
